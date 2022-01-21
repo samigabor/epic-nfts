@@ -30,7 +30,7 @@ Create a `.env` file at root level and add the following variables:
 4. 0x71902369D03Ec25D462fC1b69140e2DceFA06FdD => account 3
 5. 0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C => removed ownable
 
-## Verify & Publish to etherscan
+## Verify & Publish to [Etherscan](https://rinkeby.etherscan.io/address/0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C#code)
 
 `npm install --save-dev @nomiclabs/hardhat-etherscan`
 `npx hardhat verify --network [network] [contract address] [constructor params, if any]`
