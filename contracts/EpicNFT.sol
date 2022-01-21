@@ -53,7 +53,7 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
         "Fantom"
     ];
 
-    uint256 public constant MAX_SUPPLY = 3;
+    uint256 public constant MAX_SUPPLY = 100;
 
     event NewEpicNFTMinted(address sender, uint256 tokenId);
 
@@ -63,7 +63,7 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
 
-        require(tokenId <= MAX_SUPPLY, "All NFTs have been minted");
+        require(tokenId < MAX_SUPPLY, "All NFTs have been minted");
 
         _safeMint(msg.sender, tokenId);
 
