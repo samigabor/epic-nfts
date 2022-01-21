@@ -27,6 +27,7 @@ Create a `.env` file at root level and add the following variables:
 2. 0xB806dD81e19Ca6FAE4a5b3914e7442D40448f574
 3. 0xF77777D11734798085965b94536DDb64DCA54159
 4. 0x71902369D03Ec25D462fC1b69140e2DceFA06FdD => account 3
+5. 0xE9b43350bDaf461e34AdeF0F6F24A8A3Ad752098 => added event emmiter and ui alert
 
 ## Verify & Publish to etherscan
 

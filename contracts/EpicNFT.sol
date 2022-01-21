@@ -53,6 +53,8 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
         "Fantom"
     ];
 
+    event NewEpicNFTMinted(address sender, uint256 tokenId);
+
     constructor() ERC721("Epic", "EPC") {}
 
     function makeAnEpicNFT() public onlyOwner {
@@ -98,6 +100,9 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
         );
 
         _setTokenURI(tokenId, finalTokenUri);
+
+        emit NewEpicNFTMinted(msg.sender, tokenId);
+    }
     }
 
     function pickRandomFirstWord(uint256 _tokenId)

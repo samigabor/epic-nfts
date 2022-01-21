@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import epicNFT from "./utils/EpicNFT.json";
 
-const EPIC_NFT_CONTRACT_ADDRESS = "0x71902369D03Ec25D462fC1b69140e2DceFA06FdD";
+const EPIC_NFT_CONTRACT_ADDRESS = "0xE9b43350bDaf461e34AdeF0F6F24A8A3Ad752098";
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // const OPENSEA_LINK = "";
@@ -41,9 +41,33 @@ function App() {
     if (accounts.length) {
       setAccount(accounts[0]);
     }
+  };
 
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    setSigner(provider.getSigner());
+  const setupEventListener = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.log("Make sure you have MetaMask installed.");
+        return;
+      }
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const newSigner = provider.getSigner();
+      setSigner(newSigner);
+
+      const contract = new ethers.Contract(
+        EPIC_NFT_CONTRACT_ADDRESS,
+        epicNFT.abi,
+        newSigner
+      );
+      contract.on("NewEpicNFTMinted", (from, tokenId) => {
+        alert(
+          `Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${EPIC_NFT_CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+        );
+      });
+    } catch (error) {
+      console.error("Unable to setup event listener:", error);
+    }
   };
 
   const connectWallet = async () => {
@@ -83,6 +107,7 @@ function App() {
 
   useEffect(() => {
     checkIfWalletIsConnected();
+    setupEventListener();
   }, []);
 
   return (
