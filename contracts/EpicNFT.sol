@@ -53,6 +53,8 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
         "Fantom"
     ];
 
+    uint256 public constant MAX_SUPPLY = 3;
+
     event NewEpicNFTMinted(address sender, uint256 tokenId);
 
     constructor() ERC721("Epic", "EPC") {}
@@ -60,6 +62,9 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
     function makeAnEpicNFT() public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
+
+        require(tokenId <= MAX_SUPPLY, "All NFTs have been minted");
+
         _safeMint(msg.sender, tokenId);
 
         string memory first = pickRandomFirstWord(tokenId);
@@ -103,6 +108,9 @@ contract EpicNFT is ERC721, ERC721URIStorage, Ownable {
 
         emit NewEpicNFTMinted(msg.sender, tokenId);
     }
+
+    function getMintedCount() external view returns (uint256) {
+        return _tokenIdCounter.current();
     }
 
     function pickRandomFirstWord(uint256 _tokenId)
