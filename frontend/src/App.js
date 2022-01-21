@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import epicNFT from "./utils/EpicNFT.json";
 
-const EPIC_NFT_CONTRACT_ADDRESS = "0xE9b43350bDaf461e34AdeF0F6F24A8A3Ad752098";
+const EPIC_NFT_CONTRACT_ADDRESS = "0x31FDeef601a85a5b66f800EB41d865452aD9061C";
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // const OPENSEA_LINK = "";
@@ -13,6 +13,8 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 function App() {
   const [account, setAccount] = useState("");
   const [signer, setSigner] = useState(null);
+  const [maxSupply, setMaxSupply] = useState(0);
+  const [mintedCount, setMintedCount] = useState(0);
 
   const renderNotConnectedContainer = () => (
     <button
@@ -37,7 +39,7 @@ function App() {
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
-    console.log("eth_accounts: ", accounts);
+
     if (accounts.length) {
       setAccount(accounts[0]);
     }
@@ -60,6 +62,15 @@ function App() {
         epicNFT.abi,
         newSigner
       );
+
+      const countBigNumber = await contract.getMintedCount();
+      const count = ethers.utils.formatUnits(countBigNumber, 0);
+      setMintedCount(count);
+
+      const supplyBigNumber = await contract.MAX_SUPPLY();
+      const supply = ethers.utils.formatUnits(supplyBigNumber, 0);
+      setMaxSupply(supply);
+
       contract.on("NewEpicNFTMinted", (from, tokenId) => {
         alert(
           `Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${EPIC_NFT_CONTRACT_ADDRESS}/${tokenId.toNumber()}`
@@ -80,7 +91,7 @@ function App() {
       const connectedAccounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      console.log("eth_requestAccounts: ", connectedAccounts);
+
       setAccount(connectedAccounts[0]);
     } catch (error) {
       console.error("Unable co connect MetaMask: ", error);
@@ -118,6 +129,10 @@ function App() {
           <p className="sub-text">
             Each unique. Each beautiful. Discover your NFT today.
           </p>
+          <p className="footer-text">
+            Minted {mintedCount} out of {maxSupply}.
+          </p>
+          <br />
           {account === ""
             ? renderNotConnectedContainer()
             : renderMintNFTContainer()}
