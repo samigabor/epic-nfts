@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import epicNFT from "./utils/EpicNFT.json";
 
-const EPIC_NFT_CONTRACT_ADDRESS = "0x31FDeef601a85a5b66f800EB41d865452aD9061C";
+const EPIC_NFT_CONTRACT_ADDRESS = "0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C";
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-// const OPENSEA_LINK = "";
-// const TOTAL_MINT_COUNT = 50;
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/epic-ig9chy9fzd";
 
 function App() {
   const [account, setAccount] = useState("");
   const [signer, setSigner] = useState(null);
   const [maxSupply, setMaxSupply] = useState(0);
   const [mintedCount, setMintedCount] = useState(0);
+  const [isRinkeby, setIsRinkeby] = useState(false);
 
   const renderNotConnectedContainer = () => (
     <button
@@ -31,6 +31,12 @@ function App() {
     </button>
   );
 
+  const renderNetworkNotSupported = () => (
+    <p className="sub-text">
+      You are not connected to the Rinkeby Test Network!
+    </p>
+  );
+
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
@@ -39,6 +45,15 @@ function App() {
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
+
+    let chainId = await ethereum.request({ method: "eth_chainId" });
+    console.log("Connected to chain " + chainId);
+
+    // String, hex code of the chainId of the Rinkebey test network
+    const rinkebyChainId = "0x4";
+    if (chainId === rinkebyChainId) {
+      setIsRinkeby(true);
+    }
 
     if (accounts.length) {
       setAccount(accounts[0]);
@@ -72,7 +87,7 @@ function App() {
       setMaxSupply(supply);
 
       contract.on("NewEpicNFTMinted", (from, tokenId) => {
-        alert(
+        console.log(
           `Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${EPIC_NFT_CONTRACT_ADDRESS}/${tokenId.toNumber()}`
         );
       });
@@ -124,19 +139,32 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="header-container">
-          <p className="header gradient-text">Epic NFT Collection</p>
-          <p className="sub-text">
-            Each unique. Each beautiful. Discover your NFT today.
-          </p>
-          <p className="footer-text">
-            Minted {mintedCount} out of {maxSupply}.
-          </p>
-          <br />
-          {account === ""
-            ? renderNotConnectedContainer()
-            : renderMintNFTContainer()}
-        </div>
+        {isRinkeby ? (
+          <div className="header-container">
+            <p className="header gradient-text">Epic NFT Collection</p>
+            <p className="sub-text">
+              Each unique. Each beautiful. Discover your NFT today.
+            </p>
+            <p className="footer-text">
+              Minted {mintedCount} out of {maxSupply}. View collection on{" "}
+              <a
+                className="footer-text"
+                href={OPENSEA_LINK}
+                target="_blank"
+                rel="noreferrer"
+              >
+                OpeanSea
+              </a>
+              .
+            </p>
+            <br />
+            {account === ""
+              ? renderNotConnectedContainer()
+              : renderMintNFTContainer()}
+          </div>
+        ) : (
+          renderNetworkNotSupported()
+        )}
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
