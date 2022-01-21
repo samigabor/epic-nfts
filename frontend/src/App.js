@@ -1,7 +1,10 @@
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import epicNFT from "./utils/EpicNFT.json";
 
+const EPIC_NFT_CONTRACT_ADDRESS = "0x71902369D03Ec25D462fC1b69140e2DceFA06FdD";
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // const OPENSEA_LINK = "";
@@ -9,6 +12,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 function App() {
   const [account, setAccount] = useState("");
+  const [signer, setSigner] = useState(null);
 
   const renderNotConnectedContainer = () => (
     <button
@@ -37,6 +41,9 @@ function App() {
     if (accounts.length) {
       setAccount(accounts[0]);
     }
+
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    setSigner(provider.getSigner());
   };
 
   const connectWallet = async () => {
@@ -56,8 +63,22 @@ function App() {
     }
   };
 
-  const mintNFT = () => {
-    console.log("mint!");
+  const mintNFT = async () => {
+    const contract = new ethers.Contract(
+      EPIC_NFT_CONTRACT_ADDRESS,
+      epicNFT.abi,
+      signer
+    );
+
+    console.log("Going to pop wallet now to pay gas...");
+    const tx = await contract.makeAnEpicNFT();
+
+    console.log("Mining...please wait.");
+    await tx.wait();
+
+    console.log(
+      `Mined, see transaction: https://rinkeby.etherscan.io/tx/${tx.hash}`
+    );
   };
 
   useEffect(() => {
