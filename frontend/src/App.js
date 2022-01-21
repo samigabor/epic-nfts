@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import epicNFT from "./utils/EpicNFT.json";
 
 const EPIC_NFT_CONTRACT_ADDRESS = "0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C";
-const TWITTER_HANDLE = "_buildspace";
+const TWITTER_HANDLE = "sami_gabor";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/epic-ig9chy9fzd";
 
@@ -172,7 +172,7 @@ function App() {
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
+          >{`built by @${TWITTER_HANDLE}`}</a>
         </div>
       </div>
     </div>
