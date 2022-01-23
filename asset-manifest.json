@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/epic-nfts/static/css/main.c868e6c0.css",
-    "main.js": "/epic-nfts/static/js/main.0bc96faf.js",
+    "main.css": "/epic-nfts/static/css/main.f0cf8167.css",
+    "main.js": "/epic-nfts/static/js/main.1df85838.js",
     "static/js/787.9750ae9a.chunk.js": "/epic-nfts/static/js/787.9750ae9a.chunk.js",
     "static/media/twitter-logo.svg": "/epic-nfts/static/media/twitter-logo.a8a752547c2913d8bc15e5df109748a6.svg",
     "index.html": "/epic-nfts/index.html",
-    "main.c868e6c0.css.map": "/epic-nfts/static/css/main.c868e6c0.css.map",
-    "main.0bc96faf.js.map": "/epic-nfts/static/js/main.0bc96faf.js.map",
+    "main.f0cf8167.css.map": "/epic-nfts/static/css/main.f0cf8167.css.map",
+    "main.1df85838.js.map": "/epic-nfts/static/js/main.1df85838.js.map",
     "787.9750ae9a.chunk.js.map": "/epic-nfts/static/js/787.9750ae9a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c868e6c0.css",
-    "static/js/main.0bc96faf.js"
+    "static/css/main.f0cf8167.css",
+    "static/js/main.1df85838.js"
   ]
 }
