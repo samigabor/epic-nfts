@@ -32,5 +32,14 @@ Create a `.env` file at root level and add the following variables:
 
 ## Verify & Publish to [Etherscan](https://rinkeby.etherscan.io/address/0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C#code)
 
-`npm install --save-dev @nomiclabs/hardhat-etherscan`
-`npx hardhat verify --network [network] [contract address] [constructor params, if any]`
+```
+npm install --save-dev @nomiclabs/hardhat-etherscan
+npx hardhat verify --network [network] [contract address] [constructor params, if any]
+```
+
+## Deploy to GitHub pages
+
+```
+npm install gh-pages --save-dev
+npm run deploy
+```
