@@ -3,6 +3,8 @@ import twitterLogo from "./assets/twitter-logo.svg";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import epicNFT from "./utils/EpicNFT.json";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EPIC_NFT_CONTRACT_ADDRESS = "0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C";
 const TWITTER_HANDLE = "sami_gabor";
@@ -37,19 +39,41 @@ function App() {
     </p>
   );
 
+  const renderCustomNotification = (
+    type,
+    description,
+    link,
+    autoClose = true
+  ) =>
+    toast[type](
+      <>
+        <p>{description}</p>
+        <a
+          style={{
+            color: "darkgreen",
+            textDecoration: "none",
+          }}
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {link}
+        </a>
+      </>,
+      { autoClose, position: "top-center" }
+    );
+
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have MetaMask installed.");
+      toast.error("Unable to connect. Make sure MetaMask is installed!");
       return;
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
 
     let chainId = await ethereum.request({ method: "eth_chainId" });
-    console.log("Connected to chain " + chainId);
 
-    // String, hex code of the chainId of the Rinkebey test network
     const rinkebyChainId = "0x4";
     if (chainId === rinkebyChainId) {
       setIsRinkeby(true);
@@ -64,7 +88,7 @@ function App() {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have MetaMask installed.");
+        toast.error("Make sure MetaMask is installed!");
         return;
       }
 
@@ -87,11 +111,14 @@ function App() {
       setMaxSupply(supply);
 
       contract.on("NewEpicNFTMinted", (from, tokenId) => {
-        console.log(
-          `Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${EPIC_NFT_CONTRACT_ADDRESS}/${tokenId.toNumber()}`
-        );
+        const openseaLink = `https://testnets.opensea.io/assets/${EPIC_NFT_CONTRACT_ADDRESS}/${tokenId.toNumber()}`;
+        const opeanseaDesc = `Hey there! We've minted your NFT and sent it to your wallet. It
+          may be blank right now. It can take a max of 10 min to show up on
+          OpenSea. Here's the link:`;
+        renderCustomNotification("success", opeanseaDesc, openseaLink, false);
       });
     } catch (error) {
+      toast.error("Unable to access MetaMask. Please login!");
       console.error("Unable to setup event listener:", error);
     }
   };
@@ -100,15 +127,15 @@ function App() {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Get MetaMask!");
+        toast.error("Get MetaMask!");
         return;
       }
       const connectedAccounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-
       setAccount(connectedAccounts[0]);
     } catch (error) {
+      toast.error("Unable co connect to MetaMask.");
       console.error("Unable co connect MetaMask: ", error);
     }
   };
@@ -120,15 +147,17 @@ function App() {
       signer
     );
 
-    console.log("Going to pop wallet now to pay gas...");
+    toast.info("Confirm MetaMask transaction!", { autoClose: 1000 });
     const tx = await contract.makeAnEpicNFT();
 
-    console.log("Mining...please wait.");
+    const rinkebyLink = `https://rinkeby.etherscan.io/tx/${tx.hash}`;
+    const descriptionPending = "Mining. Here's the pending transaction:";
+    renderCustomNotification("info", descriptionPending, rinkebyLink);
+
     await tx.wait();
 
-    console.log(
-      `Mined, see transaction: https://rinkeby.etherscan.io/tx/${tx.hash}`
-    );
+    const descriptionConfirmed = "Mined. Here's the confirmed transaction:";
+    renderCustomNotification("success", descriptionConfirmed, rinkebyLink);
   };
 
   useEffect(() => {
@@ -175,6 +204,19 @@ function App() {
           >{`built by @${TWITTER_HANDLE}`}</a>
         </div>
       </div>
+      <ToastContainer
+        style={{ width: "fit-content" }}
+        theme="colored"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+      />
     </div>
   );
 }
