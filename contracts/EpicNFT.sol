@@ -108,6 +108,47 @@ contract EpicNFT is ERC721, ERC721URIStorage {
         emit NewEpicNFTMinted(msg.sender, tokenId);
     }
 
+    function mintCustomNFT(string memory _data) public {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+
+        _safeMint(msg.sender, tokenId);
+
+        string memory finalSVG = string(
+            abi.encodePacked(svgStartingTag, _data, svgEndingTag)
+        );
+
+        /**
+         * json generated:
+         * '{
+         *   "name": "_data",
+         *   "description": "An epic collection of cool names",
+         *   "image": "data:image/svg+xml;base64,<hashedSVG>"
+         *  }'
+         */
+        string memory json = Base64.encode(
+            bytes(
+                string(
+                    abi.encodePacked(
+                        '{"name": "',
+                        _data,
+                        '", "description": "An epic, customized NFT to be remembered!", "image": "data:image/svg+xml;base64,',
+                        Base64.encode(bytes(finalSVG)),
+                        '"}'
+                    )
+                )
+            )
+        );
+
+        string memory finalTokenUri = string(
+            abi.encodePacked("data:application/json;base64,", json)
+        );
+
+        _setTokenURI(tokenId, finalTokenUri);
+
+        emit NewEpicNFTMinted(msg.sender, tokenId);
+    }
+
     function getMintedCount() external view returns (uint256) {
         return _tokenIdCounter.current();
     }
