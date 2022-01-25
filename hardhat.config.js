@@ -28,6 +28,10 @@ module.exports = {
       url: `https://eth-ropsten.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY_ROPSTEN}`,
       accounts: [process.env.METAMASK_PRIVATE_KEY],
     },
+    matic: {
+      url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_POLYGON}`,
+      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1],
+    },
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,

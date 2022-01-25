@@ -13,6 +13,7 @@
 Create a `.env` file at root level and add the following variables:
 
 - `ALCHEMY_API_KEY`
+- `ALCHEMY_API_KEY_POLYGON`
 - `ETHERSCAN_API_KEY`
 - `METAMASK_PRIVATE_KEY`
 
