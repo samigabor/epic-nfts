@@ -9,10 +9,10 @@ contract SvgUriGenerator {
     string private svgEndingTag = "</text></svg>";
 
     /**
-     * @param _name the NFT name - visible on NFT/OpenSea as the image content
+     * @param _data the NFT name - visible on NFT/OpenSea as the image content
      * @param _description the NFT description - visible on OpenSea under the description section
      */
-    function generateSvgUri(string memory _name, string memory _description)
+    function generateSvgUri(string memory _data, string memory _description)
         internal
         view
         returns (string memory)
@@ -21,7 +21,7 @@ contract SvgUriGenerator {
             string(
                 abi.encodePacked(
                     "data:application/json;base64,",
-                    generateBase64EncodedJson(_name, _description)
+                    generateBase64EncodedJson(_data, _description)
                 )
             );
     }
@@ -29,15 +29,15 @@ contract SvgUriGenerator {
     /**
      * @dev the generated json(NFT metadata) has the following structure:
      * '{
-     *   "name": "_name",
+     *   "name": "_data",
      *   "description": "_description",
-     *   "image": "data:image/svg+xml;base64,<Base64 encoded SVG and contains the _name data>"
+     *   "image": "data:image/svg+xml;base64,<Base64 encoded SVG and contains the _data data>"
      *  }'
-     * @param _name the NFT name - visible on NFT/OpenSea as the image content
+     * @param _data the NFT name - visible on NFT/OpenSea as the image content
      * @param _description the NFT description - visible on OpenSea under the description section
      */
     function generateBase64EncodedJson(
-        string memory _name,
+        string memory _data,
         string memory _description
     ) private view returns (string memory) {
         return
@@ -46,11 +46,11 @@ contract SvgUriGenerator {
                     string(
                         abi.encodePacked(
                             '{"name": "',
-                            _name,
+                            _data,
                             '", "description": "',
                             _description,
                             '", "image": "data:image/svg+xml;base64,',
-                            Base64.encode(bytes(generateSvg(_name))),
+                            Base64.encode(bytes(generateSvg(_data))),
                             '"}'
                         )
                     )
@@ -59,13 +59,13 @@ contract SvgUriGenerator {
     }
 
     /**
-     * @param _name the text displayed on the SVG - visible on NFT/OpenSea as the image content
+     * @param _data the text displayed on the SVG - visible on NFT/OpenSea as the image content
      */
-    function generateSvg(string memory _name)
+    function generateSvg(string memory _data)
         private
         view
         returns (string memory)
     {
-        return string(abi.encodePacked(svgStartingTag, _name, svgEndingTag));
+        return string(abi.encodePacked(svgStartingTag, _data, svgEndingTag));
     }
 }

@@ -8,6 +8,8 @@
 4. https://testnets.opensea.io/collection/epic-8i0glg1mky
 5. https://testnets.opensea.io/collection/epic-ig9chy9fzd
 6. https://testnets.opensea.io/collection/epicmoments-v3
+7. 0xaBca23F52Dc35B3aDFFb0B7238A940108fc96aB2
+8. https://testnets.opensea.io/collection/casual-thoughts-ideas-v2
 
 ## Run project locally
 
@@ -32,6 +34,8 @@ Create a `.env` file at root level and add the following variables:
 4. 0x71902369D03Ec25D462fC1b69140e2DceFA06FdD => account 3
 5. 0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C => removed ownable
 6. 0xBCB786a56709250bc72697d0E51308760d20A36E => refactor
+7. 0xaBca23F52Dc35B3aDFFb0B7238A940108fc96aB2 => removed random feature
+8. 0x60B09733238B21E856F3fB5c50EcB7dA98Ac711b
 
 ## Verify & Publish to [Etherscan](https://rinkeby.etherscan.io/address/0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C#code)
 
