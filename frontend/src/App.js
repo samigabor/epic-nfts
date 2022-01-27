@@ -21,7 +21,8 @@ function App() {
   const [mintedCount, setMintedCount] = useState(0);
   const [isChainSupported, setIsChainSupported] = useState(false);
   const [activeTabs, setActiveTabs] = useState(tabs.onChain);
-  const [customData, setCustomData] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     Object.freeze(tabs); // makes the object act as an enum - no new elements can be added to the object
@@ -42,11 +43,13 @@ function App() {
             {activeTabs === tabs.onChain ? (
               account !== "" ? (
                 <NFTsOnChain
+                  signer={signer}
                   mintedCount={mintedCount}
                   maxSupply={maxSupply}
-                  setCustomData={setCustomData}
-                  signer={signer}
-                  customData={customData}
+                  description={description}
+                  setDescription={setDescription}
+                  name={name}
+                  setName={setName}
                 />
               ) : (
                 <div className="metamask-button">

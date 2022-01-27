@@ -6,8 +6,10 @@ function NFTsOnChain({
   signer,
   mintedCount,
   maxSupply,
-  customData,
-  setCustomData,
+  name,
+  setName,
+  description,
+  setDescription,
 }) {
   return (
     <div>
@@ -27,13 +29,21 @@ function NFTsOnChain({
 
       <div className="nft-form-container">
         <div className="nft-form">
-          <label htmlFor="customData"></label>
+          <label htmlFor="name">Name</label>
           <textarea
-            id="customData"
+            id="name"
             className="custom-data"
-            placeholder="Add the content for your NFT"
+            placeholder="Add name for your NFT. It will be the main, centered text displayed on OpenSea. Ideally it should have less than 35 characters."
+            rows="3"
+            onChange={(event) => setName(event.target.value)}
+          />
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            className="custom-data"
+            placeholder="Add description for your NFT. It will be displayed under the 'Description' section on OpenSea."
             rows="5"
-            onChange={(event) => setCustomData(event.target.value)}
+            onChange={(event) => setDescription(event.target.value)}
           />
         </div>
       </div>
@@ -53,7 +63,7 @@ function NFTsOnChain({
       </p>
 
       <div className="metamask-button">
-        <MintNFT signer={signer} customData={customData} />
+        <MintNFT signer={signer} name={name} description={description} />
       </div>
     </div>
   );

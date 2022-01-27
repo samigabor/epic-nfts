@@ -1,28 +1,37 @@
 import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import "./MintNFT.css";
-import epicNFT from "../utils/EpicNFT.json";
+import { CONTRACT_ADDRESS, METAMASK } from "../shared/constants";
+import { getBlockExpolorerBaseLink } from "../shared/helpers";
 import renderCustomNotification from "../shared/notifications";
-import { CONTRACT_ADDRESS, METAMASK, MATIC } from "../shared/constants";
+import epicNFT from "../utils/EpicNFT.json";
 
-function MintNFT({ signer, customData }) {
+function MintNFT({ signer, name, description }) {
   const mintNFT = async () => {
+    if (!name || !description) {
+      toast.warning("Name and description are required!");
+      return;
+    }
+
     const contract = new ethers.Contract(CONTRACT_ADDRESS, epicNFT.abi, signer);
 
     toast.info(METAMASK.CONFIRM_TRANSACTION, { autoClose: 1000 });
 
-    const tx = await contract.mintCustomNFT(customData);
+    const tx = await contract.mintCustomNFT(name, description);
 
-    // TODO: get network currently deployed network
-    const maticLink = `${MATIC.BASE_LINK}/${tx.hash}`;
-    renderCustomNotification("info", METAMASK.PENDING_TRANSACTION, maticLink);
+    const blockExpolorer = `${getBlockExpolorerBaseLink()}/${tx.hash}`;
+    renderCustomNotification(
+      "info",
+      METAMASK.PENDING_TRANSACTION,
+      blockExpolorer
+    );
 
     await tx.wait();
 
     renderCustomNotification(
       "success",
       METAMASK.CONFIRMED_TRANSACTION,
-      maticLink
+      blockExpolorer
     );
   };
 
