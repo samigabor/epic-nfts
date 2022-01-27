@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/epic-nfts/static/css/main.89e7b622.css",
-    "main.js": "/epic-nfts/static/js/main.de15df1e.js",
+    "main.js": "/epic-nfts/static/js/main.56ce6a8c.js",
     "static/js/787.9750ae9a.chunk.js": "/epic-nfts/static/js/787.9750ae9a.chunk.js",
     "static/media/twitter-logo.svg": "/epic-nfts/static/media/twitter-logo.a8a752547c2913d8bc15e5df109748a6.svg",
     "index.html": "/epic-nfts/index.html",
     "main.89e7b622.css.map": "/epic-nfts/static/css/main.89e7b622.css.map",
-    "main.de15df1e.js.map": "/epic-nfts/static/js/main.de15df1e.js.map",
+    "main.56ce6a8c.js.map": "/epic-nfts/static/js/main.56ce6a8c.js.map",
     "787.9750ae9a.chunk.js.map": "/epic-nfts/static/js/787.9750ae9a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.89e7b622.css",
-    "static/js/main.de15df1e.js"
+    "static/js/main.56ce6a8c.js"
   ]
 }
