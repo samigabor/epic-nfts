@@ -3,7 +3,12 @@ import epicNFT from "../utils/EpicNFT.json";
 import { ethers } from "ethers";
 import renderCustomNotification from "./notifications";
 
-import { CONTRACT_ADDRESS, METAMASK, OPENSEA } from "./constants";
+import {
+  CHAIN_SUPPORTED,
+  CONTRACT_ADDRESS,
+  METAMASK,
+  OPENSEA,
+} from "./constants";
 
 const checkIfWalletIsConnected = async ({
   setIsChainSupported,
@@ -19,12 +24,7 @@ const checkIfWalletIsConnected = async ({
 
   let chainId = await ethereum.request({ method: "eth_chainId" });
 
-  // const supportedChain = "0x3"; // Ropsten Testnetc
-  // const supportedChain = "0x4"; // Rinkeby Testnetc
-  // const supportedChain = "0x5"; // Goerli Testnetc
-  const supportedChain = "0x89"; // Matic Mainnet
-  console.log(chainId);
-  if (chainId === supportedChain) {
+  if (chainId === CHAIN_SUPPORTED) {
     setIsChainSupported(true);
   }
 
