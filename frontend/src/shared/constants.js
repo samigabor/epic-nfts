@@ -19,7 +19,9 @@ const METAMASK = {
 };
 
 const OPENSEA = {
-  BASE_LINK: `https://opensea.io/assets/${CONTRACT_ADDRESS}`,
+  BASE_LINK: `https://opensea.io/assets${
+    CHAIN_SUPPORTED === CHAINS.MATIC_MAINNET ? "/matic" : ""
+  }/${CONTRACT_ADDRESS}`,
   RINKEBY_COLLECTION:
     "https://testnets.opensea.io/collection/casual-thoughts-ideas-v2",
   MATIC_COLLECTION: "https://opensea.io/collection/random-thoughts-v3",
