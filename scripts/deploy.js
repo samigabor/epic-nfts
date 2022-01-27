@@ -4,7 +4,10 @@ const main = async () => {
   await nftContract.deployed();
   console.log("Contract deployed to:", nftContract.address);
 
-  const txn = await nftContract.mintCustomNFT("Ideas to be remembered!");
+  const name = "Ideas to be remembered!";
+  const description =
+    "Remember your thoughts and ideas by creating an unique NFT, personalized as you wish. Mark memorable events by minting your customized NFT on the Polygon network. Fully on-chain.";
+  const txn = await nftContract.mintCustomNFT(name, description);
   // Wait for it to be mined.
   await txn.wait();
   console.log("Minted NFT");
