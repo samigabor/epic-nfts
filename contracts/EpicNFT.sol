@@ -16,7 +16,7 @@ contract EpicNFT is ERC721, ERC721URIStorage, SvgUriGenerator {
 
     event NewEpicNFTMinted(address sender, uint256 tokenId);
 
-    constructor() ERC721("Casual Thoughts & Ideas", "CTI") {
+    constructor() ERC721("RandomThoughts", "RT") {
         description = "Remember your thoughts and ideas by creating an unique NFT, personalized as you wish. Mark memorable events by minting your customized NFT on the Polygon network. Fully on-chain.";
     }
 

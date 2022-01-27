@@ -7,7 +7,7 @@ const CHAINS = {
 
 const CHAIN_SUPPORTED = CHAINS.MATIC_MAINNET;
 
-const CONTRACT_ADDRESS = "0x81e40D52E25224877dB546DdA9A1AE4293Ff1C0E";
+const CONTRACT_ADDRESS = "0xE286EEB19839E6FE1df4EaAF773f7941211efEcE";
 
 const METAMASK = {
   CONFIRM_TRANSACTION: "Confirm MetaMask transaction!",
@@ -23,7 +23,7 @@ const OPENSEA = {
   BASE_LINK: `https://opensea.io/assets/${CONTRACT_ADDRESS}`,
   RINKEBY_COLLECTION:
     "https://testnets.opensea.io/collection/casual-thoughts-ideas-v2",
-  MATIC_COLLECTION: "https://opensea.io/collection/casual-thoughts-ideas",
+  MATIC_COLLECTION: "https://opensea.io/collection/randomthoughts-v2",
   MINT_NOTIFICATION: `Hey there! We've minted your NFT and sent it to your wallet. It
     may be blank right now. It can take a max of 10 min to show up on
     OpenSea. Here's the link:`,

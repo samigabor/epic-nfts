@@ -3,14 +3,14 @@
 ## Visible on Opeansea
 
 - [Rinkeby Test Network](https://testnets.opensea.io/collection/casual-thoughts-ideas-v2)
-- [Polygon Mainnet](https://opensea.io/collection/casual-thoughts-ideas)
+- [Polygon Mainnet](https://opensea.io/collection/randomthoughts-v2)
 
-## Deployed To:
+## Latest deployments:
 
 `npx hardhat run scripts/deploy.js [--network]`
 
 - [Rinkeby Test Network](https://rinkeby.etherscan.io/address/0x60B09733238B21E856F3fB5c50EcB7dA98Ac711b)
-- [Matic Mainnet](https://polygonscan.com/address/0x81e40D52E25224877dB546DdA9A1AE4293Ff1C0E)
+- [Matic Mainnet](https://polygonscan.com/address/0xE286EEB19839E6FE1df4EaAF773f7941211efEcE)
 
 ## Verified & Published On:
 
