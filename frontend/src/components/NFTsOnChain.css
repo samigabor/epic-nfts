@@ -1,0 +1,25 @@
+.sub-text-margin {
+  margin: 6px;
+}
+
+.nft-form-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.nft-form {
+  min-width: 200px;
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  color: white;
+}
+
+.custom-data {
+  width: 100%;
+  margin: 6px 0 16px 0;
+  font-size: 18px;
+  line-height: 24px;
+}
