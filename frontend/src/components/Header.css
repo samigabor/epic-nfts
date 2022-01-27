@@ -1,0 +1,15 @@
+.tab-button {
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  border: none;
+  color: gray;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 16px;
+}
+
+.active {
+  border-bottom: 2px solid white;
+  color: white;
+}
