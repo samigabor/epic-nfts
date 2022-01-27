@@ -1,4 +1,4 @@
-const CONTRACT_ADDRESS = "0xf5B02FeeE91D85Ab9945598A2DBAb7783E5D487C";
+const CONTRACT_ADDRESS = "0x81e40D52E25224877dB546DdA9A1AE4293Ff1C0E";
 
 const METAMASK = {
   CONFIRM_TRANSACTION: "Confirm MetaMask transaction!",
@@ -11,11 +11,17 @@ const METAMASK = {
 };
 
 const OPENSEA = {
-  BASE_LINK: `https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}`,
-  COLLECTION_LINK: "https://testnets.opensea.io/collection/epic-ig9chy9fzd",
+  BASE_LINK: `https://opensea.io/assets/${CONTRACT_ADDRESS}`,
+  RINKEBY_COLLECTION:
+    "https://testnets.opensea.io/collection/casual-thoughts-ideas-v2",
+  MATIC_COLLECTION: "https://opensea.io/collection/casual-thoughts-ideas",
   MINT_NOTIFICATION: `Hey there! We've minted your NFT and sent it to your wallet. It
     may be blank right now. It can take a max of 10 min to show up on
     OpenSea. Here's the link:`,
+};
+
+const MATIC = {
+  BASE_LINK: "https://polygonscan.com/tx",
 };
 
 const RINKEBY = {
@@ -27,4 +33,4 @@ const TWITTER = {
   LINK: "https://twitter.com/sami_gabor",
 };
 
-export { CONTRACT_ADDRESS, METAMASK, OPENSEA, RINKEBY, TWITTER };
+export { CONTRACT_ADDRESS, MATIC, METAMASK, OPENSEA, RINKEBY, TWITTER };

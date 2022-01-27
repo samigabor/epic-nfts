@@ -5,7 +5,10 @@ import renderCustomNotification from "./notifications";
 
 import { CONTRACT_ADDRESS, METAMASK, OPENSEA } from "./constants";
 
-const checkIfWalletIsConnected = async ({ setIsRinkeby, setAccount }) => {
+const checkIfWalletIsConnected = async ({
+  setIsChainSupported,
+  setAccount,
+}) => {
   const { ethereum } = window;
   if (!ethereum) {
     toast.error(METAMASK.UNABLE_TO_CONNECT);
@@ -16,9 +19,13 @@ const checkIfWalletIsConnected = async ({ setIsRinkeby, setAccount }) => {
 
   let chainId = await ethereum.request({ method: "eth_chainId" });
 
-  const rinkebyChainId = "0x4";
-  if (chainId === rinkebyChainId) {
-    setIsRinkeby(true);
+  // const supportedChain = "0x3"; // Ropsten Testnetc
+  // const supportedChain = "0x4"; // Rinkeby Testnetc
+  // const supportedChain = "0x5"; // Goerli Testnetc
+  const supportedChain = "0x89"; // Matic Mainnet
+  console.log(chainId);
+  if (chainId === supportedChain) {
+    setIsChainSupported(true);
   }
 
   if (accounts.length) {
