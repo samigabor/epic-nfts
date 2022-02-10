@@ -5,8 +5,8 @@ const CHAINS = {
   MATIC_MAINNET: "0x89",
 };
 
-const CHAIN_SUPPORTED = CHAINS.MATIC_MAINNET;
-const CONTRACT_ADDRESS = "0x383Eb4b9eeA82A4773B86ABd85fc18A7A1B3B373";
+const CHAIN_SUPPORTED = CHAINS.RINKEBY_TEST_NETWORK;
+const CONTRACT_ADDRESS = "0x94060a0E4adB1868dfDCB466c8CA90F8F772ab11";
 
 const METAMASK = {
   CONFIRM_TRANSACTION: "Confirm MetaMask transaction!",
@@ -19,7 +19,9 @@ const METAMASK = {
 };
 
 const OPENSEA = {
-  BASE_LINK: `https://opensea.io/assets${
+  BASE_LINK: `https://${
+    CHAIN_SUPPORTED === CHAINS.RINKEBY_TEST_NETWORK ? "testnets." : ""
+  }opensea.io/assets${
     CHAIN_SUPPORTED === CHAINS.MATIC_MAINNET ? "/matic" : ""
   }/${CONTRACT_ADDRESS}`,
   RINKEBY_COLLECTION:
