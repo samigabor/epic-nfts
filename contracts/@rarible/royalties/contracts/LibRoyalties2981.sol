@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.6.2 <0.8.0;
+pragma solidity ^0.8.0;
 
 import "./LibPart.sol";
 
@@ -14,7 +14,7 @@ library LibRoyalties2981 {
     /*Method for converting amount to percent and forming LibPart*/
     function calculateRoyalties(address to, uint256 amount)
         internal
-        view
+        pure
         returns (LibPart.Part[] memory)
     {
         LibPart.Part[] memory result;

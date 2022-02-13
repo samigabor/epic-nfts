@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.6.2 <0.8.0;
-pragma abicoder v2;
+pragma solidity ^0.8.0;
 
 import "./AbstractRoyalties.sol";
 import "../RoyaltiesV2.sol";
@@ -32,6 +31,7 @@ contract RoyaltiesV2Impl is AbstractRoyalties, RoyaltiesV2, IERC2981 {
     function royaltyInfo(uint256 id, uint256 _salePrice)
         external
         view
+        virtual
         override
         returns (address receiver, uint256 royaltyAmount)
     {
