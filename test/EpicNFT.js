@@ -49,7 +49,7 @@ describe("EpicNFT", async () => {
     expect(contractSymbol).to.equal("RT");
   });
 
-  it("should mint an NFT", async () => {
+  it("should mint an NFT for owner", async () => {
     let nftOwner;
     nftContract = nftContract.connect(owner);
     await nftContract.mintCustomNFT("test name", "test description");
