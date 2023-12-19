@@ -22,15 +22,15 @@ module.exports = {
   networks: {
     rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1],
+      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1 || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
     },
     ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY_ROPSTEN}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY],
+      accounts: [process.env.METAMASK_PRIVATE_KEY || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
     },
     matic: {
       url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_POLYGON}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1],
+      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1 || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
     },
   },
   etherscan: {
