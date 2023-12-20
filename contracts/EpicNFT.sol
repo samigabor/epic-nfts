@@ -36,7 +36,8 @@ contract EpicNFT is ERC721, ERC721URIStorage, SvgUriGenerator {
         return _tokenIdCounter.current();
     }
 
-    ///@dev The following function is override required by Solidity.
+    // The following functions are overrides required by Solidity.
+
     function _burn(uint256 tokenId)
         internal
         override(ERC721, ERC721URIStorage)
@@ -44,7 +45,6 @@ contract EpicNFT is ERC721, ERC721URIStorage, SvgUriGenerator {
         super._burn(tokenId);
     }
 
-    ///@dev The following function is override required by Solidity.
     function tokenURI(uint256 tokenId)
         public
         view
@@ -52,5 +52,14 @@ contract EpicNFT is ERC721, ERC721URIStorage, SvgUriGenerator {
         returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }

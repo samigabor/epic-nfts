@@ -20,17 +20,17 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.11",
   networks: {
-    rinkeby: {
-      url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1 || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
+    scroll: {
+      url: `https://dark-wider-wave.scroll-mainnet.quiknode.pro/${process.env.SCROLL_API_KEY}`,
+      accounts: [process.env.METAMASK_PRIVATE_KEY],
     },
-    ropsten: {
-      url: `https://eth-ropsten.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY_ROPSTEN}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
+    polygon: {
+      url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.POLYGON_API_KEY}`,
+      accounts: [process.env.METAMASK_PRIVATE_KEY],
     },
-    matic: {
-      url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_POLYGON}`,
-      accounts: [process.env.METAMASK_PRIVATE_KEY_ACCOUNT_1 || "0x5e98cce00cff5dea6b454889f359a4ec06b9fa6b88e9d69b86de8e1c81887da0"],
+    polygonzkevm: {
+      url: `https://polygonzkevm-mainnet.g.alchemy.com/v2/${process.env.POLYGON_ZKEVM_API_KEY}`,
+      accounts: [process.env.METAMASK_PRIVATE_KEY],
     },
   },
   etherscan: {
