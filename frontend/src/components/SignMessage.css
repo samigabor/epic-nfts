@@ -1,0 +1,84 @@
+.form-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.form {
+    min-width: 200px;
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    color: white;
+}
+
+label {
+    margin: 6px 0;
+    font-size: 18px;
+    color: white;
+}
+
+.custom-data,
+.signed-message {
+    width: 100%;
+    margin: 6px 0 16px 0;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 8px;
+    text-align: left;
+}
+
+.sign-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    align-self: center;
+    margin: 24px;
+}
+
+.sign-button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid #4caf50;
+}
+
+.signed-message-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+.sub-text-margin {
+    margin: 6px;
+}
+
+.form-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.form {
+    min-width: 200px;
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    color: white;
+}
+
+.custom-data {
+    width: 100%;
+    margin: 6px 0 16px 0;
+    font-size: 18px;
+    line-height: 24px;
+}

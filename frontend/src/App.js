@@ -6,12 +6,14 @@ import ConnectWallet from "./components/ConnectWallet";
 import Header from "./components/Header";
 import NetworkNotSupported from "./components/NetworkNotSupported";
 import NFTsOnChain from "./components/NFTsOnChain";
+import SignMessage from "./components/SignMessage";
 import Footer from "./components/Footer";
 import { setupEventListener, checkIfWalletIsConnected } from "./shared/web3";
 
 const tabs = {
   onChain: "On-Chain",
   offChain: "Off-Chain",
+  signMessage: "Sign Message",
 };
 
 function App() {
@@ -38,9 +40,9 @@ function App() {
           activeTabs={activeTabs}
           setActiveTabs={setActiveTabs}
         />
-        {isChainSupported ? (
+        {
           <div>
-            {activeTabs === tabs.onChain ? (
+            {activeTabs === tabs.onChain && isChainSupported && (
               account !== "" ? (
                 <NFTsOnChain
                   signer={signer}
@@ -55,14 +57,21 @@ function App() {
                 <div className="metamask-button">
                   <ConnectWallet setAccount={setAccount} />
                 </div>
-              )
-            ) : (
-              <h2 style={{ color: "white" }}>Comming soon!</h2>
+                )
+            )}
+            {activeTabs === tabs.onChain && !isChainSupported && (
+              <NetworkNotSupported />
+            )}
+            {activeTabs === tabs.offChain && (
+              <div style={{ color: "white" }}>
+                Comming Soon...
+              </div>
+            )}
+            {activeTabs === tabs.signMessage && (
+              <SignMessage signer={signer} />
             )}
           </div>
-        ) : (
-          <NetworkNotSupported />
-        )}
+        }
         <Footer />
       </div>
       <ToastContainer
