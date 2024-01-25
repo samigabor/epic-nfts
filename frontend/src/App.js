@@ -22,7 +22,7 @@ function App() {
   const [maxSupply, setMaxSupply] = useState(0);
   const [mintedCount, setMintedCount] = useState(0);
   const [isChainSupported, setIsChainSupported] = useState(false);
-  const [activeTabs, setActiveTabs] = useState(tabs.onChain);
+  const [activeTabs, setActiveTabs] = useState(tabs.signMessage);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
